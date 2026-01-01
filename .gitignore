@@ -1,0 +1,50 @@
+# ======================
+# .NET / Visual Studio
+# ======================
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+.vs/
+
+# Rider / VSCode
+.idea/
+.vscode/
+
+# ======================
+# Database
+# ======================
+*.db
+*.sqlite
+*.sqlite3
+
+# ======================
+# Node / React
+# ======================
+node_modules/
+dist/
+build/
+
+# Vite
+.vite/
+
+# ======================
+# Environment files
+# ======================
+.env
+.env.local
+.env.development
+.env.production
+
+# ======================
+# Logs
+# ======================
+*.log
+
+# ======================
+# OS files
+# ======================
+.DS_Store
+Thumbs.db
