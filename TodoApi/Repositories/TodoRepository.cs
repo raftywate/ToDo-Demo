@@ -11,7 +11,7 @@ namespace TodoApi.Repositories {
             _context = context;
         }
 
-        public async Task<List<TodoItem>> GetAllAsync(string? search, ToDoCategory? category) {
+        public async Task<List<TodoItem>> GetAllAsync(string? search, ToDoCategory? category, PriorityLevel? priority) {
             var query = _context.Todos.AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(search))
@@ -19,6 +19,9 @@ namespace TodoApi.Repositories {
 
             if (category.HasValue)
                 query = query.Where(t => t.Category == category);
+
+            if (priority.HasValue)
+                query = query.Where(t => t.Priority == priority);
 
             return await query.ToListAsync();
         }

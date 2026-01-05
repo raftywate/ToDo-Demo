@@ -14,8 +14,10 @@ namespace TodoApi.Controllers {
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetTodos(string? search, ToDoCategory? category)
-            => Ok(await _service.GetTodosAsync(search, category));
+        public async Task<IActionResult> GetTodos([FromQuery] string? search, [FromQuery] ToDoCategory? category, [FromQuery] PriorityLevel? priority) {
+            var todos = await _service.GetTodosAsync(search, category, priority);
+            return Ok(todos);
+        }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetTodo(int id)

@@ -1,13 +1,24 @@
-export default function TodoItem({ todo, onDelete }) {
+export default function TodoItem({ todo, onToggle, onDelete }) {
   return (
     <li className="todo-item">
-      <div>
+      <div
+        className={`todo-text ${
+          todo.isCompleted ? "todo-completed" : ""
+        }`}
+      >
         <strong>{todo.title}</strong>
-        <span className="todo-meta">
-          ({todo.priority}, {todo.category})
-        </span>
+        <span> ({todo.priority}, {todo.category})</span>
       </div>
-      <button onClick={() => onDelete(todo.id)}>Completed</button>
+
+      <div className="todo-actions">
+        <button onClick={() => onToggle(todo)}>
+          {todo.isCompleted ? "Undo" : "Complete"}
+        </button>
+
+        <button onClick={() => onDelete(todo.id)}>
+          Delete
+        </button>
+      </div>
     </li>
   );
 }

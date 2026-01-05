@@ -11,14 +11,15 @@ namespace TodoApi.Services {
             _repository = repository;
         }
 
-        public async Task<List<TodoItem>> GetTodosAsync(string? search, ToDoCategory? category)
-            => await _repository.GetAllAsync(search, category);
+        public async Task<List<TodoItem>> GetTodosAsync(string? search, ToDoCategory? category, PriorityLevel? priority)
+            => await _repository.GetAllAsync(search, category, priority);
 
         public async Task<TodoItem> GetTodoByIdAsync(int id)
             => await _repository.GetByIdAsync(id)
                ?? throw new Exception("Todo not found.");
 
         public async Task<TodoItem> CreateTodoAsync(TodoItem todo) {
+            todo.IsCompleted = false; 
             ValidateEnums(todo);
             return await _repository.AddAsync(todo);
         }
